@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>세마중 NEWS</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  background: #f4f6fa;
+  color: #202b3c;
+}
+
+header {
+  background: #163b70;
+  color: white;
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: #73c5ff;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+button {
+  background: #2469a6;
+  color: white;
+  border: 0;
+  border-radius: 7px;
+  padding: 11px 16px;
+  min-height: 42px;
+  cursor: pointer;
+  font-size: 14px;
+  touch-action: manipulation;
+}
+
+button:hover {
+  opacity: .85;
+}
+
+nav button {
+  background: transparent;
+  color: white;
+}
+
+.hero {
+  background: linear-gradient(120deg, #173d76, #287bb4);
+  color: white;
+  padding: 70px 9%;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin: 0 0 12px;
+  line-height: 1.35;
+}
+
+.hero p {
+  color: #dcecff;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.card,
+.panel {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 3px 12px #0000000b;
+  margin-bottom: 15px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.tag {
+  color: #287bb4;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  margin: 7px 0 14px;
+  border: 1px solid #d4dce7;
+  border-radius: 7px;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #0009;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.modal-box {
+  background: white;
+  padding: 25px;
+  border-radius: 13px;
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.small {
+  font-size: 13px;
+  color: #778399;
+}
+
+.danger {
+  background: #c44747;
+}
+
+.secondary {
+  background: #68788c;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.member-row {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  overflow-wrap: anywhere;
+}
+
+.notice {
+  background: #eef6ff;
+  padding: 13px;
+  border-radius: 9px;
+  margin-bottom: 14px;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 15px;
+  color: #778399;
+}
+
+/* 태블릿 */
+@media (max-width: 900px) {
+  header {
+    padding: 18px 4%;
+  }
+
+  .hero {
+    padding: 55px 6%;
+  }
+
+  .container {
+    padding: 0 18px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/* 휴대폰 */
+@media (max-width: 600px) {
+  header {
+    padding: 16px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .logo {
+    text-align: center;
+    font-size: 25px;
+  }
+
+  nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 7px;
+  }
+
+  nav button {
+    background: #245080;
+    border-radius: 7px;
+    padding: 12px 5px;
+    min-height: 44px;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 43px 22px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    line-height: 1.4;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero button {
+    width: 100%;
+    margin-top: 8px;
+    min-height: 46px;
+  }
+
+  .container {
+    margin: 25px auto;
+    padding: 0 14px;
+  }
+
+  .section-title {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .section-title h2 {
+    margin-bottom: 8px;
+  }
+
+  .section-title input {
+    max-width: none !important;
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .card,
+  .panel {
+    padding: 17px;
+    border-radius: 10px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .card p {
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  .panel h3 {
+    font-size: 18px;
+  }
+
+  .panel button,
+  .card button {
+    margin: 4px 3px 4px 0;
+  }
+
+  .modal {
+    padding: 12px;
+    align-items: center;
+  }
+
+  .modal-box {
+    padding: 20px;
+    max-height: 88vh;
+    border-radius: 12px;
+  }
+
+  .modal-box h2 {
+    font-size: 21px;
+  }
+
+  .modal-box button {
+    min-height: 46px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+    padding: 13px;
+  }
+
+  .member-row {
+    line-height: 1.8;
+  }
+
+  footer {
+    padding: 28px 12px;
+    font-size: 14px;
+  }
+}
+
+/* 작은 휴대폰 */
+@media (max-width: 380px) {
+  .logo {
+    font-size: 23px;
+  }
+
+  nav button {
+    font-size: 13px;
+    padding: 10px 3px;
+  }
+
+  .hero h1 {
+    font-size: 25px;
+  }
+
+  .modal-box {
+    padding: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">세마중 <span>NEWS</span></div>
+
+  <nav>
+    <button onclick="showHome()">홈</button>
+    <button onclick="showArticles()">전체 기사</button>
+    <button onclick="openMemberLogin()" id="memberLoginBtn">회원 로그인</button>
+    <button onclick="openWrite()">기사 제보</button>
+    <button onclick="logout()" id="logoutBtn" class="hidden">로그아웃</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>세마중학교의 소식을 한눈에</h1>
+  <p>우리 학교의 다양한 소식을 전하는 세마중 NEWS</p>
+  <button onclick="openWrite()">기사 제보하기</button>
+</section>
+
+<main class="container" id="home">
+  <div class="section-title">
+    <h2>최신 뉴스</h2>
+    <input id="search" placeholder="기사 검색..." style="max-width:250px" oninput="renderArticles()">
+  </div>
+
+  <div id="articleList" class="grid"></div>
+
+  <h2>공지사항</h2>
+  <div id="noticeList"></div>
+</main>
+
+<main class="container hidden" id="admin">
+  <h2>관리자 대시보드</h2>
+  <p id="adminWelcome"></p>
+
+  <div class="panel">
+    <h3>가입 회원 관리</h3>
+    <div id="users"></div>
+  </div>
+
+  <div class="panel">
+    <h3>기사 승인 관리</h3>
+    <div id="pending"></div>
+  </div>
+
+  <div class="panel">
+    <h3>공지사항 작성</h3>
+    <input id="noticeTitle" placeholder="공지 제목">
+    <textarea id="noticeBody" placeholder="공지 내용"></textarea>
+    <button onclick="addNotice()">공지 등록</button>
+    <div id="adminNotices"></div>
+  </div>
+</main>
+
+<!-- 회원 로그인 -->
+<div class="modal hidden" id="memberModal">
+  <div class="modal-box">
+    <h2>회원 로그인</h2>
+    <p class="small">세마중 NEWS 회원 전용 로그인</p>
+
+    <input id="memberId" placeholder="아이디">
+    <input id="memberPw" type="password" placeholder="비밀번호">
+
+    <button onclick="login('student')" style="width:100%">회원 로그인</button>
+    <button class="secondary" onclick="openSignup()" style="width:100%;margin-top:8px">회원가입</button>
+    <button class="danger" onclick="closeModals()" style="width:100%;margin-top:8px">닫기</button>
+  </div>
+</div>
+
+<!-- 관리자 로그인 -->
+<div class="modal hidden" id="adminModal">
+  <div class="modal-box">
+    <h2>관리자 로그인</h2>
+    <p class="small">관리자 전용 계정으로 로그인합니다.</p>
+
+    <input id="adminId" placeholder="관리자 아이디">
+    <input id="adminPw" type="password" placeholder="관리자 비밀번호">
+
+    <button onclick="login('admin')" style="width:100%">관리자 로그인</button>
+    <button class="danger" onclick="closeModals()" style="width:100%;margin-top:8px">닫기</button>
+  </div>
+</div>
+
+<!-- 회원가입 -->
+<div class="modal hidden" id="signupModal">
+  <div class="modal-box">
+    <h2>세마중 NEWS 회원가입</h2>
+
+    <div class="notice">
+      <strong>Google 아이디와 비밀번호로 가입해 주세요.</strong>
+    </div>
+
+    <p class="small">※ 본인의 Google 아이디및 비밀번호로 가입하세요. 비밀번호 분실을 예방하기 쉽습니다.</p>
+
+    <label>이름</label>
+    <input id="signupName" placeholder="이름">
+
+    <label>아이디</label>
+    <input id="signupId" placeholder="사용할 아이디">
+
+    <label>비밀번호</label>
+    <input id="signupPw" type="password" placeholder="비밀번호">
+
+    <label>비밀번호 확인</label>
+    <input id="signupPwConfirm" type="password" placeholder="비밀번호 다시 입력">
+
+    <button onclick="signup()" style="width:100%">가입하기</button>
+    <button class="danger" onclick="closeModals()" style="width:100%;margin-top:8px">닫기</button>
+  </div>
+</div>
+
+<!-- 기사 제보 -->
+<div class="modal hidden" id="writeModal">
+  <div class="modal-box">
+    <h2>기사 제보</h2>
+
+    <input id="articleTitle" placeholder="기사 제목">
+
+    <select id="articleCategory">
+      <option>학교생활</option>
+      <option>학교행사</option>
+      <option>학생소식</option>
+      <option>공지사항</option>
+    </select>
+
+    <textarea id="articleBody" placeholder="기사 내용"></textarea>
+
+    <button onclick="submitArticle()" style="width:100%">제출하기</button>
+    <button class="danger" onclick="closeModals()" style="width:100%;margin-top:8px">닫기</button>
+  </div>
+</div>
+
+<footer>
+  세마중 NEWS<br>
+  <span class="small">학교 소식을 전하는 뉴스 플랫폼</span>
+</footer>
+
+<script>
+let users = JSON.parse(localStorage.getItem("semaUsers") || "[]");
+let articles = JSON.parse(localStorage.getItem("semaArticles") || "[]");
+let notices = JSON.parse(localStorage.getItem("semaNotices") || "[]");
+
+let currentUser = null;
+const DAY = 24 * 60 * 60 * 1000;
+
+function saveUsers() {
+  localStorage.setItem("semaUsers", JSON.stringify(users));
+}
+
+function saveArticles() {
+  localStorage.setItem("semaArticles", JSON.stringify(articles));
+}
+
+function saveNotices() {
+  localStorage.setItem("semaNotices", JSON.stringify(notices));
+}
+
+// 최초 관리자 계정
+if (!users.some(u => u.id === "admin")) {
+  users.push({
+    name: "관리자",
+    id: "admin",
+    pw: "admin1234",
+    role: "admin"
+  });
+  saveUsers();
+}
+
+// 모달 관리
+function closeModals() {
+  document.querySelectorAll(".modal").forEach(m => {
+    m.classList.add("hidden");
+  });
+}
+
+function openMemberLogin() {
+  closeModals();
+  document.getElementById("memberModal").classList.remove("hidden");
+}
+
+function openAdminLogin() {
+  closeModals();
+  document.getElementById("adminModal").classList.remove("hidden");
+}
+
+function openSignup() {
+  closeModals();
+  document.getElementById("signupModal").classList.remove("hidden");
+}
+
+// 회원가입
+function signup() {
+  let name = document.getElementById("signupName").value.trim();
+  let id = document.getElementById("signupId").value.trim();
+  let pw = document.getElementById("signupPw").value;
+  let confirmPw = document.getElementById("signupPwConfirm").value;
+
+  if (!name || !id || !pw || !confirmPw) {
+    alert("모든 항목을 입력해 주세요.");
+    return;
+  }
+
+  if (id.length < 4) {
+    alert("아이디는 4글자 이상 입력해 주세요.");
+    return;
+  }
+
+  if (!/^[a-zA-Z0-9_]+$/.test(id)) {
+    alert("아이디는 영문, 숫자, 밑줄(_)만 사용할 수 있습니다.");
+    return;
+  }
+
+  if (pw.length < 6) {
+    alert("비밀번호는 6글자 이상 입력해 주세요.");
+    return;
+  }
+
+  if (pw !== confirmPw) {
+    alert("비밀번호가 서로 일치하지 않습니다.");
+    return;
+  }
+
+  if (users.some(u => u.id.toLowerCase() === id.toLowerCase())) {
+    alert("이미 사용 중인 아이디입니다.");
+    return;
+  }
+
+  users.push({
+    name: name,
+    id: id,
+    pw: pw,
+    role: "student"
+  });
+
+  saveUsers();
+
+  document.getElementById("signupName").value = "";
+  document.getElementById("signupId").value = "";
+  document.getElementById("signupPw").value = "";
+  document.getElementById("signupPwConfirm").value = "";
+
+  closeModals();
+  alert("회원가입이 완료되었습니다. 로그인해 주세요.");
+  openMemberLogin();
+  document.getElementById("memberId").value = id;
+}
+
+// 관리자 로그인 숨김 기능
+let blankClickCount = 0;
+let blankClickTimer = null;
+
+document.addEventListener("click", function(event) {
+  const blankAreas = ["BODY", "MAIN", "SECTION", "FOOTER"];
+
+  const clickedBlankArea =
+    blankAreas.includes(event.target.tagName) &&
+    !event.target.closest("button,input,textarea,select,a,.card,.panel,.modal,.modal-box,nav");
+
+  if (!clickedBlankArea) {
+    blankClickCount = 0;
+    clearTimeout(blankClickTimer);
+    return;
+  }
+
+  blankClickCount++;
+  clearTimeout(blankClickTimer);
+
+  blankClickTimer = setTimeout(function() {
+    blankClickCount = 0;
+  }, 1000);
+
+  if (blankClickCount >= 3) {
+    blankClickCount = 0;
+    clearTimeout(blankClickTimer);
+    openAdminLogin();
+  }
+});
+
+// 로그인
+function login(expectedRole) {
+  let id, pw;
+
+  if (expectedRole === "admin") {
+    id = document.getElementById("adminId").value.trim();
+    pw = document.getElementById("adminPw").value;
+  } else {
+    id = document.getElementById("memberId").value.trim();
+    pw = document.getElementById("memberPw").value;
+  }
+
+  let user = users.find(u => u.id === id && u.pw === pw);
+
+  if (!user) {
+    alert("아이디 또는 비밀번호가 올바르지 않습니다.");
+    return;
+  }
+
+  if (user.role !== expectedRole) {
+    alert("올바른 로그인 화면을 이용해 주세요.");
+    return;
+  }
+
+  currentUser = user;
+
+  localStorage.setItem("semaSession", JSON.stringify({
+    id: user.id,
+    expires: Date.now() + DAY
+  }));
+
+  closeModals();
+  updateLoginUI();
+
+  if (user.role === "admin") {
+    showAdmin();
+  } else {
+    showHome();
+    alert(user.name + "님, 환영합니다!");
+  }
+}
+
+// 로그인 유지
+function restoreSession() {
+  let saved = localStorage.getItem("semaSession");
+  if (!saved) return;
+
+  try {
+    let session = JSON.parse(saved);
+
+    if (Date.now() > session.expires) {
+      localStorage.removeItem("semaSession");
+      return;
+    }
+
+    let user = users.find(u => u.id === session.id);
+
+    if (!user) {
+      localStorage.removeItem("semaSession");
+      return;
+    }
+
+    currentUser = user;
+    updateLoginUI();
+
+    if (user.role === "admin") {
+      showAdmin();
+    } else {
+      showHome();
+    }
+  } catch (e) {
+    localStorage.removeItem("semaSession");
+  }
+}
+
+function updateLoginUI() {
+  let loggedIn = !!currentUser;
+
+  document.getElementById("memberLoginBtn").classList.toggle("hidden", loggedIn);
+  document.getElementById("logoutBtn").classList.toggle("hidden", !loggedIn);
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem("semaSession");
+  updateLoginUI();
+  showHome();
+  alert("로그아웃되었습니다.");
+}
+
+// 화면 전환
+function showHome() {
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("admin").classList.add("hidden");
+  renderArticles();
+  renderNotices();
+}
+
+function showArticles() {
+  showHome();
+}
+
+// 관리자 페이지
+function showAdmin() {
+  if (!currentUser || currentUser.role !== "admin") {
+    alert("관리자만 접근할 수 있습니다.");
+    showHome();
+    return;
+  }
+
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("admin").classList.remove("hidden");
+  document.getElementById("adminWelcome").textContent =
+    currentUser.name + " 관리자님, 환영합니다.";
+
+  renderAdmin();
+}
+
+// 기사 제보
+function openWrite() {
+  if (!currentUser) {
+    alert("먼저 로그인해 주세요.");
+    openMemberLogin();
+    return;
+  }
+
+  if (currentUser.role !== "student") {
+    alert("회원 계정으로 이용해 주세요.");
+    return;
+  }
+
+  closeModals();
+  document.getElementById("writeModal").classList.remove("hidden");
+}
+
+function submitArticle() {
+  if (!currentUser || currentUser.role !== "student") return;
+
+  let title = document.getElementById("articleTitle").value.trim();
+  let body = document.getElementById("articleBody").value.trim();
+  let category = document.getElementById("articleCategory").value;
+
+  if (!title || !body) {
+    alert("제목과 내용을 입력해 주세요.");
+    return;
+  }
+
+  articles.push({
+    title: title,
+    body: body,
+    category: category,
+    author: currentUser.name,
+    approved: false,
+    date: new Date().toLocaleDateString()
+  });
+
+  saveArticles();
+  closeModals();
+
+  alert("기사 제보가 완료되었습니다. 관리자 승인 후 게시됩니다.");
+
+  document.getElementById("articleTitle").value = "";
+  document.getElementById("articleBody").value = "";
+}
+
+// 기사 출력
+function renderArticles() {
+  let q = (document.getElementById("search")?.value || "").toLowerCase();
+
+  let list = articles.filter(a =>
+    a.approved &&
+    (a.title + a.body + a.category).toLowerCase().includes(q)
+  );
+
+  document.getElementById("articleList").innerHTML =
+    list.length
+      ? list.map(a => `
+        <div class="card">
+          <div class="tag">${escapeHTML(a.category)}</div>
+          <h3>${escapeHTML(a.title)}</h3>
+          <p>${escapeHTML(a.body)}</p>
+          <p class="small">${escapeHTML(a.author)} · ${escapeHTML(a.date)}</p>
+        </div>
+      `).join("")
+      : "<p>등록된 기사가 없습니다.</p>";
+}
+
+// 관리자 대시보드
+function renderAdmin() {
+  if (!currentUser || currentUser.role !== "admin") return;
+
+  document.getElementById("users").innerHTML =
+    users.map((u, i) => `
+      <div class="member-row">
+        <b>이름:</b> ${escapeHTML(u.name)}<br>
+        <b>아이디:</b> ${escapeHTML(u.id)}<br>
+        <b>계정 구분:</b> ${u.role === "admin" ? "관리자" : "회원"}<br>
+        ${u.role !== "admin"
+          ? `<button class="danger" onclick="deleteUser(${i})">회원 삭제</button>`
+          : ""}
+      </div>
+    `).join("");
+
+  let pending = articles
+    .map((a, i) => ({...a, index: i}))
+    .filter(a => !a.approved);
+
+  document.getElementById("pending").innerHTML =
+    pending.length
+      ? pending.map(a => `
+        <div class="card">
+          <b>${escapeHTML(a.title)}</b>
+          <p>${escapeHTML(a.body)}</p>
+          <p class="small">작성자: ${escapeHTML(a.author)}</p>
+          <button onclick="approve(${a.index})">승인</button>
+          <button class="danger" onclick="deleteArticle(${a.index})">삭제</button>
+        </div>
+      `).join("")
+      : "승인 대기 중인 기사가 없습니다.";
+
+  renderAdminNotices();
+}
+
+function deleteUser(i) {
+  if (!currentUser || currentUser.role !== "admin") return;
+  if (!confirm("이 회원을 삭제할까요?")) return;
+
+  users.splice(i, 1);
+  saveUsers();
+  renderAdmin();
+}
+
+function approve(i) {
+  if (!currentUser || currentUser.role !== "admin") return;
+
+  articles[i].approved = true;
+  saveArticles();
+  renderAdmin();
+  renderArticles();
+}
+
+function deleteArticle(i) {
+  if (!currentUser || currentUser.role !== "admin") return;
+  if (!confirm("기사를 삭제할까요?")) return;
+
+  articles.splice(i, 1);
+  saveArticles();
+  renderAdmin();
+  renderArticles();
+}
+
+// 공지사항
+function addNotice() {
+  if (!currentUser || currentUser.role !== "admin") return;
+
+  let title = document.getElementById("noticeTitle").value.trim();
+  let body = document.getElementById("noticeBody").value.trim();
+
+  if (!title || !body) {
+    alert("제목과 내용을 입력해 주세요.");
+    return;
+  }
+
+  notices.push({
+    title: title,
+    body: body
+  });
+
+  saveNotices();
+
+  document.getElementById("noticeTitle").value = "";
+  document.getElementById("noticeBody").value = "";
+
+  renderAdminNotices();
+  renderNotices();
+}
+
+function renderNotices() {
+  document.getElementById("noticeList").innerHTML =
+    notices.length
+      ? notices.map(n => `
+        <div class="card">
+          <b>${escapeHTML(n.title)}</b>
+          <p>${escapeHTML(n.body)}</p>
+        </div>
+      `).join("")
+      : "<p>등록된 공지사항이 없습니다.</p>";
+}
+
+function renderAdminNotices() {
+  document.getElementById("adminNotices").innerHTML =
+    notices.map((n, i) => `
+      <div class="member-row">
+        <b>${escapeHTML(n.title)}</b>
+        <p>${escapeHTML(n.body)}</p>
+        <button class="danger" onclick="deleteNotice(${i})">삭제</button>
+      </div>
+    `).join("");
+}
+
+function deleteNotice(i) {
+  if (!currentUser || currentUser.role !== "admin") return;
+
+  notices.splice(i, 1);
+  saveNotices();
+  renderAdmin();
+  renderNotices();
+}
+
+// HTML 문자 처리
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[c]));
+}
+
+// 최초 실행
+renderArticles();
+renderNotices();
+restoreSession();
+</script>
+
+</body>
+</html>
